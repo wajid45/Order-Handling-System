@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Handling System</title>
+    
+</head>
+<body>
+
+<header>
+    <h1>Order Handling System</h1>
+</header>
+
+<nav>
+    <a href="#add">Add Order</a>
+    <a href="#orders">All Orders</a>
+    <a href="#logs">Action Logs</a>
+</nav>
+
+<section id="add">
+    <h2>Add / Edit Order</h2>
+    <form method="POST" action="/add">
+        <input type="number" name="num_items" placeholder="Number of Items" required>
+        <input type="date" name="delivery_date" required>
+        <input type="text" name="sender_name" placeholder="Sender Name" required>
+        <input type="text" name="recipient_name" placeholder="Recipient Name" required>
+        <input type="text" name="recipient_address" placeholder="Recipient Address" required>
+        <button type="submit">Save Order</button>
+    </form>
+</section>
+
+<section id="orders">
+    <h2>All Orders</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Items</th>
+                <th>Delivery Date</th>
+                <th>Sender</th>
+                <th>Recipient</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order[0] }}</td>
+                <td>{{ order[1] }}</td>
+                <td>{{ order[2] }}</td>
+                <td>{{ order[3] }}</td>
+                <td>{{ order[4] }}</td>
+                <td>{{ order[5] }}</td>
+                <td>{{ order[6] }}</td>
+                <td class="actions">
+                    <a href="/edit/{{ order[0] }}">Edit</a>
+                    <a href="/deliver/{{ order[0] }}">Deliver</a>
+                    <a href="/delete/{{ order[0] }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<section id="logs">
+    <h2>Action Logs</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>Performed By</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+            <tr>
+                <td>{{ log[1] }}</td>
+                <td>{{ log[2] }}</td>
+                <td>{{ log[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+</body>
+</html>
