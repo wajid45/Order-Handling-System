@@ -10,17 +10,6 @@ header {
     padding: 1rem;
     text-align: center;
 }
-nav {
-    background: #495057;
-    padding: 0.5rem;
-    text-align: center;
-}
-nav a {
-    color: white;
-    margin: 0 15px;
-    text-decoration: none;
-    font-weight: bold;
-}
 section {
     padding: 20px;
 }
