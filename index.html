@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Order Handling System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
@@ -11,8 +12,8 @@
 </header>
 
 <section id="add">
-    <h2>Add / Edit Order</h2>
-    <form method="POST" action="/add">
+    <h2>Add Order</h2>
+    <form method="POST" action="{{ url_for('main.add_order') }}">
         <input type="number" name="num_items" placeholder="Number of Items" required>
         <input type="date" name="delivery_date" required>
         <input type="text" name="sender_name" placeholder="Sender Name" required>
@@ -48,9 +49,9 @@
                 <td>{{ order[5] }}</td>
                 <td>{{ order[6] }}</td>
                 <td class="actions">
-                    <a href="/edit/{{ order[0] }}">Edit</a>
-                    <a href="/deliver/{{ order[0] }}">Deliver</a>
-                    <a href="/delete/{{ order[0] }}">Delete</a>
+                    <a href="{{ url_for('main.edit_order', id=order[0]) }}">Edit</a>
+                    <a href="{{ url_for('main.mark_delivered', id=order[0]) }}">Deliver</a>
+                    <a href="{{ url_for('main.delete_order', id=order[0]) }}">Delete</a>
                 </td>
             </tr>
             {% endfor %}
